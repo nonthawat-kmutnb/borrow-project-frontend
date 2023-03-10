@@ -1,29 +1,38 @@
 import React from 'react';
 import HamburgerMenu from '../HamburgerMenu';
-import AnimatedPage from '../AnimatedPage'
+import AnimatedPage from '../AnimatedPage';
+import Rent from "./Rent.css";
 
-function App() {
+function Rental() {
   return (
     <AnimatedPage>
-      <div className="App">
+      <div className="Rent">
         <header className="App-header">
-          <h1>Rent</h1>
+          <h1>Rental Form</h1>
+          <form>
+            <label>Name :</label>
+            <input
+              type="text"/>
+            <label>StudentID :</label>
+            <input
+              type="text"/>
+            <label>Tel :</label>
+            <input
+              type="text"/>
+            <label>E-Mail :</label>
+            <input
+              type="text"/>
+            <label>SerialNumber :</label>
+            <input
+              type="text"/>
+            <button>Add</button>
+            </form>
           <HamburgerMenu />
         </header>
-        <main>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <p>Suspendisse potenti. Sed in justo in quam bibendum venenatis.</p>
-          <p>Donec quis felis eu sapien rutrum congue ac id mi.</p>
-          <p>Ut eget ex vel nisi semper bibendum ac a velit.</p>
-          <p>Aliquam blandit sapien vel lacus interdum rhoncus.</p>
-          <p>Phasellus gravida nisi sed nunc dapibus lacinia.</p>
-          <p>Proin id lectus vel erat aliquam bibendum.</p>
-          <p>Integer semper lorem vel erat facilisis, in auctor felis pulvinar.</p>
-        </main>
       </div>
     </AnimatedPage>
 
   );
 }
 
-export default App;
+export default Rental;
