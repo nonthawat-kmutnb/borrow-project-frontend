@@ -25,7 +25,7 @@ function Rental() {
             <label>SerialNumber :</label>
             <input
               type="text"/>
-            <button>Add</button>
+            <button>Confirm</button>
             </form>
           <HamburgerMenu />
         </header>
