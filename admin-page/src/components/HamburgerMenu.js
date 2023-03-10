@@ -11,7 +11,7 @@ const HamburgerMenu = () => {
   return (
     <div className={`hamburger-menu ${isOpen ? 'open' : 'open'}`} ref={menuRef}>
       <ul>
-        <ButtonComponent to="/" text="Home"/>
+        {/* <ButtonComponent to="/" text="Home"/> */}
         <ButtonComponent to="/rent" text="Rent"/>
         <ButtonComponent to="/add-products" text="Add Products"/>
         <ButtonComponent to="/add-admin" text="Add Admin"/>
