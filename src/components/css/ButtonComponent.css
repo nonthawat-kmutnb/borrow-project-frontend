@@ -1,0 +1,18 @@
+.round-square-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%; /* add this property to make the button width fit to the container */
+    box-sizing: border-box; /* add this property to include padding and border in the button width calculation */
+  }
+  
+  .round-square-button:hover {
+    background-color: #BFBFBF;
+    color: rgb(0, 0, 0);
+  }
+  
