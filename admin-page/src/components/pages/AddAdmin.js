@@ -1,28 +1,38 @@
-import React from 'react';
-import HamburgerMenu from '../HamburgerMenu';
-import AnimatedPage from '../AnimatedPage'
+import React from "react";
+import HamburgerMenu from "../HamburgerMenu";
+import AnimatedPage from "../AnimatedPage";
+import "./AddAdmin.css";
 
 function App() {
+  // const [email, setEmail] = useState('');
+
+  // const handleInputChange = (event) => {
+  //   setEmail(event.target.value);
+  // };
+
+  // const handleConfirmClick = () => {
+
+  // };
+
   return (
     <AnimatedPage>
       <div className="App">
         <header className="App-header">
-          <h1>Add Admin</h1>
-          <HamburgerMenu />
+          <div className="add-admin-container">
+            <h1>Add Admin</h1>
+            <label>Email :</label>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              // value={email}
+              // onChange={handleInputChange}
+            />
+            <button>Add</button>
+            <HamburgerMenu />
+          </div>
         </header>
-        <main>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          <p>Suspendisse potenti. Sed in justo in quam bibendum venenatis.</p>
-          <p>Donec quis felis eu sapien rutrum congue ac id mi.</p>
-          <p>Ut eget ex vel nisi semper bibendum ac a velit.</p>
-          <p>Aliquam blandit sapien vel lacus interdum rhoncus.</p>
-          <p>Phasellus gravida nisi sed nunc dapibus lacinia.</p>
-          <p>Proin id lectus vel erat aliquam bibendum.</p>
-          <p>Integer semper lorem vel erat facilisis, in auctor felis pulvinar.</p>
-        </main>
       </div>
     </AnimatedPage>
-
   );
 }
 
