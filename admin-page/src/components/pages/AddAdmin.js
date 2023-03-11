@@ -1,7 +1,7 @@
 import React from "react";
 import HamburgerMenu from "../HamburgerMenu";
 import AnimatedPage from "../AnimatedPage";
-import "./AddAdmin.css";
+import "../css/AddAdmin.css"
 
 function App() {
   // const [email, setEmail] = useState('');

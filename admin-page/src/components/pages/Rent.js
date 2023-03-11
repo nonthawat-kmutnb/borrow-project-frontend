@@ -1,7 +1,7 @@
 import React from 'react';
 import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage';
-import Rent from "./Rent.css";
+import Rent from "../css/Rent.css"
 
 function Rental() {
   return (
