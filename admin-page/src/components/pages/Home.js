@@ -3,6 +3,8 @@ import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage'
 import kmutnb from '../image/kmutnb.png';
 import ece from '../image/ece.png';
+import SquareImage from '../SquareImage';
+
 import '../css/Home.css'
 function App() {
   return (
@@ -15,7 +17,7 @@ function App() {
 
       <div className="App">
         
-        <header className="App-header">
+        <header className="Home-header">
           <h1>My App</h1>
           
         </header>
@@ -29,6 +31,13 @@ function App() {
           <p>Proin id lectus vel erat aliquam bibendum.</p>
           <p>Integer semper lorem vel erat facilisis, in auctor felis pulvinar.</p>
         </main>
+      </div>
+      <div className="App">
+      <SquareImage
+        imageUrl="https://picsum.photos/200/200"
+        title="Example Image"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
+      />
       </div>
     </AnimatedPage>
 
