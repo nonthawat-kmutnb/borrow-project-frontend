@@ -5,6 +5,7 @@ import Rent from './pages/Rent';
 import AddProducts from './pages/AddProducts';
 import AddAdmin from './pages/AddAdmin';
 import Summary from './pages/Summary';
+import Password from './pages/Password';
 
 import { AnimatePresence } from "framer-motion"
 
@@ -17,6 +18,7 @@ const NavRouter = () => {
           <Route path="/admin/add-products" element={<AddProducts/>} />
           <Route path="/admin/add-admin" element={<AddAdmin/>} />
           <Route path="/admin/summary" element={<Summary/>} />
+          <Route path="/admin/password" element={<Password/>} />
       </Routes>
     </AnimatePresence>
   )

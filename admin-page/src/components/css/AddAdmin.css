@@ -53,11 +53,11 @@
   .add-admin-container button {
     margin-left: 300px;
     padding: 10px;
-    background-color: #F9964F;
+    background: #ff6004;
     color: #fff;
     width: 15%;
-    border: none;
-    border-radius: 5px;
+    border: 0;
+    border-radius: 10px;
     cursor: pointer;
     align-items: center;
    

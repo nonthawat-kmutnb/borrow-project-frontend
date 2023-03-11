@@ -1,6 +1,7 @@
 import React from "react";
 import HamburgerMenu from "../HamburgerMenu";
 import AnimatedPage from "../AnimatedPage";
+import OrangeButton from '../OrangeButton';
 import "../css/AddAdmin.css"
 
 function App() {
@@ -27,7 +28,9 @@ function App() {
               // value={email}
               // onChange={handleInputChange}
             />
-            <button>Add</button>
+            <ul>
+              <OrangeButton to="/admin/password" text="Add"/>
+            </ul>
             <HamburgerMenu />
           </div>
         </header>

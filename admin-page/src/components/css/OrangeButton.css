@@ -1,0 +1,12 @@
+.OrangeButton {
+    margin-top: 70px;
+    background: #ff6004;
+    color: #fff;
+    font-size: 15px;
+    border: 0;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    position:relative;
+    right: -100px;
+}

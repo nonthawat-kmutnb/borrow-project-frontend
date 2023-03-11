@@ -29,10 +29,12 @@ function AddProducts() {
           <form>
             <label>Name :</label>
             <input
-              type="text"/>
-            <label>Serial :</label>
+              type="text"
+              placeholder="Enter Name"/>
+            <label>SerialNumber :</label>
             <input
-              type="text"/>
+              type="text"
+              placeholder="Enter SerialNumber"/>
             <label>Category :</label>
             <select>
               <option value="Circuit Breakers">Circuit Breakers</option>
@@ -55,7 +57,7 @@ function AddProducts() {
               <option value="Switches">Switches</option>
               <option value="Relays">Relays</option>
             </select>
-            <label>Type :</label>
+            <label>Image :</label>
             <input type="file" multiple accept="image/*" onChange={onImageChange} />
             {imageURLs.map((imageSrc, idx) => (
             <img key={idx} width="640" height="360" src={imageSrc} />))}
