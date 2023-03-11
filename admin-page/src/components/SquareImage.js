@@ -19,7 +19,7 @@ const SquareImage = ({ title, imageUrl, description }) => {
                 </div>
 
             </div>
-            <Modal noPadding open={visible} onClose={closeHandler}>
+            <Modal noPadding open={visible} blur onClose={closeHandler}>
                 <Modal.Body>
                     <Image
                         showSkeleton
