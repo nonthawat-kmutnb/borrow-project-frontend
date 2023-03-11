@@ -1,35 +1,45 @@
 import React, { useState } from 'react';
-import './css/SquareImage.css'
+import '../components/css/Card.css'
+import { Modal, Image, Text } from "@nextui-org/react";
 
-const SquareImage = ({ imageUrl, title, description }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const SquareImage = ({ title, imageUrl, description }) => {
+    const [visible, setVisible] = React.useState(false);
+    const handler = () => setVisible(true);
+    const closeHandler = () => {
+        setVisible(false);
+        console.log("closed");
+    };
+    return (
+        <>
+            <div className="card" onClick={handler}>
+                <img src={imageUrl} alt={title} />
+                <div className="card-content">
+                    <h2 className="card-title">{title}</h2>
+                    <p className="card-description">{description}</p>
+                </div>
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  return (
-    <div className="square-image">
-      <img src={imageUrl} alt={title} onClick={openModal} />
-      <div className="text">
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
-      {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <img src={imageUrl} alt={title} />
-            <div className="modal-text">
-              <h3>{title}</h3>
-              <p>{description}</p>
             </div>
-            <button className="close-button" onClick={closeModal}>
-              X
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+            <Modal noPadding open={visible} onClose={closeHandler}>
+                <Modal.Body>
+                    <Image
+                        showSkeleton
+                        src={imageUrl}
+                        width={400}
+                        height={300}
+                        objectFit="cover"
+                    />
+                    <Text b size="$xl" style={{marginLeft:"10px",marginBottom:"1px"}}>Oscilloscope</Text>
+                    <Text b style={{marginLeft:"10px",marginBottom:"1px"}}>Amount</Text>
+                    <Text style={{marginLeft:"10px",marginBottom:"1px"}}>20</Text>
+                    <Text b style={{marginLeft:"10px",marginBottom:"1px"}}>Serial</Text>
+                    <Text style={{marginLeft:"10px",marginBottom:"1px"}}>75XXXXXXXXXXXX</Text>
+                    <Text style={{marginLeft:"10px",marginBottom:"1px"}}>76XXXXXXXXXXXX</Text>
+                    <Text style={{marginLeft:"10px",marginBottom:"10px"}}>77XXXXXXXXXXXX</Text>
+                </Modal.Body>
+            </Modal>
+        </>
+
+    );
 };
 
 export default SquareImage;

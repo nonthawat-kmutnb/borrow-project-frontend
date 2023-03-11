@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap%27');
+
+
 .logo-container {
     position: absolute;
     top: 0;
@@ -8,3 +12,31 @@
     height: auto; /* maintains aspect ratio */
     margin: 20px;
 }
+.App-header {
+    background-color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: rgb(0, 0, 0);
+    font-family: 'Quicksand'
+  }
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    grid-gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 200px;
+}
+
+  
+  /* Override grid-template-columns for small screens */
+  @media (max-width: 768px) {
+    .product-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }

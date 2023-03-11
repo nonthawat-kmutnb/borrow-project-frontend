@@ -12,11 +12,11 @@ const NavRouter = () => {
   return (
     <AnimatePresence>
       <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/rent" element={<Rent/>} />
-          <Route path="/add-products" element={<AddProducts/>} />
-          <Route path="/add-admin" element={<AddAdmin/>} />
-          <Route path="/summary" element={<Summary/>} />
+          <Route path="/admin" element={<Home/>} />
+          <Route path="/admin/rent" element={<Rent/>} />
+          <Route path="/admin/add-products" element={<AddProducts/>} />
+          <Route path="/admin/add-admin" element={<AddAdmin/>} />
+          <Route path="/admin/summary" element={<Summary/>} />
           {/* <Route path="/Debt" element={<Navigate to="/Wallet/MyDebt" />} />
           <Route path="/Goal" element={<Navigate to="/Wallet/MyGoal" />} />
           <Route path="Wallet" element={<UserRoute><Wallet/></UserRoute>}>

@@ -9,10 +9,12 @@ import { BrowserRouter as Router } from 'react-router-dom'
 function App() {
   return (
     <Router>
-        <HamburgerMenu/>
-        <AdminRouter />
-        <UserRouter />
+      <HamburgerMenu />
+      <AdminRouter />
+      <UserRouter />
     </Router>
+
+
   );
 }
 
