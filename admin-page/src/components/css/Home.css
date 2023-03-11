@@ -1,0 +1,10 @@
+.logo-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.logo-container img {
+    width: 80px; /* replace with your desired logo width */
+    height: auto; /* maintains aspect ratio */
+    margin: 20px;
+}

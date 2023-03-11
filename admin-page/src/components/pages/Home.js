@@ -1,14 +1,23 @@
 import React from 'react';
 import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage'
-
+import kmutnb from '../image/kmutnb.png';
+import ece from '../image/ece.png';
+import '../css/Home.css'
 function App() {
   return (
     <AnimatedPage>
+      <div className='logo-container'>
+        <img src={kmutnb} alt="kmutnb" className="kmutnb-logo"/>
+        <img src={ece} alt="ece" className="ece-logo"/>
+      </div>
+      
+
       <div className="App">
+        
         <header className="App-header">
           <h1>My App</h1>
-          <HamburgerMenu />
+          
         </header>
         <main>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>

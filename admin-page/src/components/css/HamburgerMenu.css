@@ -16,6 +16,9 @@
   .hamburger-menu.open {
     left: 0;
   }
+  .hamburger-menu.hide {
+    display: none;
+  }
   
   .hamburger-menu ul {
     list-style-type: none;
