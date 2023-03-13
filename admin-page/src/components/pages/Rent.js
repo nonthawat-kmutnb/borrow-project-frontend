@@ -6,7 +6,7 @@ import Rent from "../css/Rent.css"
 function Rental() {
   return (
     <AnimatedPage>
-      <div className="Rent">
+      <div className="Rent" >
         <header className="App-header">
           <h1>Rental Form</h1>
           <form>

@@ -41,14 +41,14 @@ function App() {
 
     <div class="float-container">
 
-      <div class="float-child_left" style={{backgroundColor: '#D2CFCA'}}>
+      <div class="float-child_left" style={{backgroundColor: '#dddddd'}}>
 
       <img className="LoginImg" alt="complex" src="https://www.smoengineer.net/wp-content/uploads/2014/08/front_of_eng_bld.jpg" 
       style={{ alignItems: 'center',display: 'flex', justifyContent: 'center',height: '50vh',}}/>
 
       </div>
       
-      <div class="float-child_right" style={{backgroundColor: '#D2CFCA'}}>
+      <div class="float-child_right" style={{backgroundColor: '#dddddd'}}>
           <div className='float-Subchild'>
             <h1>Login admin account</h1>
           </div>
@@ -69,7 +69,7 @@ function App() {
                   onChange={e => setPassword(e.target.value)}/>
                 </div >
                 <div  className='float-Subchild' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Button type="submit" style={{backgroundColor: '#ff6004'}} color="neutral">Confirm</Button>
+                  <Button type="submit" className='Login-button' style={{backgroundColor: '#ff6004'}} color="neutral">Confirm</Button>
                 </div>
 
               </form>
