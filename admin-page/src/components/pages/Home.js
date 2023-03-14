@@ -6,9 +6,28 @@ import ece from '../image/ece.png';
 import SquareImage from '../SquareImage';
 import { NextUIProvider } from '@nextui-org/react'
 import FilterComponent from '../FilterComponent';
+import axios from 'axios';
 
 import '../css/Home.css'
 function App() {
+
+  const [products,setProducts] = React.useState([])
+  const fetchData = ()=>{
+
+    axios
+    .get("http://localhost:8080/productItem")
+    .then(response=>{
+      setProducts(response.data)
+    })
+    .catch(err=>alert(err))
+    
+  }
+
+  React.useEffect(()=>{
+    fetchData()// eslint-disable-next-line
+  },[])
+    
+
   return (
     <NextUIProvider>
       <AnimatedPage>
@@ -25,36 +44,21 @@ function App() {
         </div>
         <FilterComponent />
         <div className="product-container">
-          <SquareImage
-            imageUrl="https://picsum.photos/200/200"
-            title="Example Image"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
-          />
-          <SquareImage
-            imageUrl="https://picsum.photos/200/200"
-            title="Example Image"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
-          />
-          <SquareImage
-            imageUrl="https://picsum.photos/200/200"
-            title="Example Image"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
-          />
-          <SquareImage
-            imageUrl="https://picsum.photos/200/200"
-            title="Example Image"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
-          />
-          <SquareImage
-            imageUrl="https://picsum.photos/200/200"
-            title="Example Image"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
-          />
-          <SquareImage
-            imageUrl="https://picsum.photos/200/200"
-            title="Example Image"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum lobortis mauris ut sapien fringilla, sit amet efficitur turpis tristique. Nam nec velit in massa sagittis gravida."
-          />
+          {products.slice(0).map((data, index) => (
+            <SquareImage
+            // imageUrl={data.product.image}
+            imageUrl="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"
+            title={data.product.name}
+            description={data.product.description}
+            amount = {data.product.availableAmount}
+            total_amount = {data.product.totalAmount}
+            usage_freq = {data.product.usageFrequency}
+            serialNo = {data.serialNumber}
+            room = {data.room.name}
+            source = {data.source.name}
+            />
+          ))}
+          
           {/* <BootTest/> */}
         </div>
       </AnimatedPage>
