@@ -7,10 +7,13 @@ import Password from "../css/Password.css"
 function App() {
   return (
     <AnimatedPage>
-      <div className="Password">
+      <div className="Password-container" style={{backgroundColor: '#dddddd'}}>
         <header className="Password">
-          <h1>Password</h1>
+          <h1>Change Password</h1>
+          </header>
+          
           <form>
+          <div className="Password-form">
             <label>Password :</label>
             <input
               type="text"
@@ -19,12 +22,14 @@ function App() {
             <input
               type="text"
               placeholder="Enter new Password"/>
-            <ul>
+            </div>
+            <div className="Password-button" style={{ display: 'flex', justifyContent: 'flex-end' }}>
               <OrangeButton to="/admin/rent" text="Confirm"/>
-            </ul>
+            </div>
             </form>
+            
           <HamburgerMenu />
-        </header>
+        
       </div>
     </AnimatedPage>
 

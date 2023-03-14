@@ -23,9 +23,10 @@ function AddProducts() {
   console.log("imageURLs : ", imageURLs);
   return (
     <AnimatedPage>
-      <div className="AddProducts">
-        <header className="App-header">
+      <div className="AddProducts" style={{backgroundColor: '#dddddd'}}>
+
           <h1>Add Products</h1>
+          
           <form>
             <label>Name :</label>
             <input
@@ -64,7 +65,7 @@ function AddProducts() {
             <button>Add</button>
           </form>
           <HamburgerMenu />
-        </header>
+        
       </div>
     </AnimatedPage>
 

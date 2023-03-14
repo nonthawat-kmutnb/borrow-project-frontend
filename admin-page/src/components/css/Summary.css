@@ -82,7 +82,7 @@ td {
 
 }
 
-.add_button{
+.submit_button{
     
     background: #ff6004;
     color: #fff;
@@ -91,7 +91,20 @@ td {
     border-radius: 10px;
     cursor: pointer;
     width: 90px;
-    padding-right: 34px;
+    padding-right: 23px;
+    margin-right: 65px;
+
+}
+
+.add_button{
+    
+    background: #ff6004;
+    color: #fff;
+    border: 0;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 60px;
     margin-right: 65px;
 
 }

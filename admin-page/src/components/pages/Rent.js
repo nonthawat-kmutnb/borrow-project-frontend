@@ -9,7 +9,9 @@ function Rental() {
       <div className="Rent" >
         <header className="App-header">
           <h1>Rental Form</h1>
+          
           <form>
+          <div className='Rent-form' style={{backgroundColor: '#dddddd'}}>
             <label>Name :</label>
             <input
               type="text"
@@ -30,7 +32,9 @@ function Rental() {
             <input
               type="text"
               placeholder="Enter SerialNumber"/>
+            
             <button>Confirm</button>
+            </div>
             </form>
           <HamburgerMenu />
         </header>

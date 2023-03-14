@@ -5,7 +5,6 @@ import Login from "../css/Login.css"
 import kmutnb from '../image/kmutnb.png';
 import ece from '../image/ece.png';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 import swal from 'sweetalert';
 
 
@@ -69,7 +68,7 @@ function App() {
                   onChange={e => setPassword(e.target.value)}/>
                 </div >
                 <div  className='float-Subchild' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Button type="submit" className='Login-button' style={{backgroundColor: '#ff6004'}} color="neutral">Confirm</Button>
+                  <button type="submit"  className='Login-button' style={{ color: 'white' ,backgroundColor: '#ff6004'} }>Confirm</button>
                 </div>
 
               </form>

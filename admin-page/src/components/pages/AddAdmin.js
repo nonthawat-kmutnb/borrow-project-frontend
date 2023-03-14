@@ -19,7 +19,7 @@ function App() {
     <AnimatedPage>
       <div className="App">
         <header className="App-header">
-          <div className="add-admin-container">
+          <div className="add-admin-container" style={{backgroundColor: '#dddddd'}}>
             <h1>Add Admin</h1>
             <label>Email :</label>
             <input
@@ -28,9 +28,9 @@ function App() {
               // value={email}
               // onChange={handleInputChange}
             />
-            <ul>
+            <div className="add-admin-container-button">
               <OrangeButton to="/admin/password" text="Add"/>
-            </ul>
+            </div>
             <HamburgerMenu />
           </div>
         </header>

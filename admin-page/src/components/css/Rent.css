@@ -7,11 +7,13 @@
   color: #333;
 }
 .Rent {
-    max-width: 300px;
+    max-width: 500px;
     margin:auto;
-    margin-top: 0px;
+    margin-top: 20px;
+    margin-left: 45%;
     text-align: center;
-    display: flex;
+    /* padding-left: 10px; */
+
 }
 .Rent h1{
     font-size: 30px;
@@ -19,12 +21,16 @@
     margin: 30px 0;
     font-weight: bold;
     position:relative;
-    right: 0px;
+    right: 20%;
+    position:relative;
+    
+    /* border: 2px solid red; */
 }
 .Rent label{
     font-size: 10px;
     text-align: left;
     display: block;
+    
 }
 .Rent input{
     width: 200%;
@@ -33,6 +39,7 @@
     border: 1px solid #5b5959;
     border-radius: 10px;
     box-sizing: border-box;
+    position:relative;
     display: block;
 }
 .Rent button {
@@ -43,5 +50,19 @@
     border-radius: 10px;
     cursor: pointer;
     position:relative;
-    right: -200px;
+    right: -130%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.Rent-form {
+
+    max-width: 100%;
+    /* border: 2px solid red; */
+    padding-right: 200px;
+    padding-left: 30px;
+    padding-top: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+
 }

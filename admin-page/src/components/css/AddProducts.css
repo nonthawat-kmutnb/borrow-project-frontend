@@ -7,11 +7,19 @@
   color: #333;
 }
 .AddProducts {
-    max-width: 300px;
+    max-width: 750px;
+    min-width: 500px;
+    /* max-height: 0px; */
     margin:auto;
-    margin-top: 0px;
+    margin-top: 10%;
+    margin-left: 35%;
     text-align: center;
-    display: flex;
+    padding-right: 300px;
+    padding-left: 50px;
+    padding-top: 20px;
+    /* display: flex; */
+    /* border: 2px solid red; */
+    border-radius: 25px;
 }
 .AddProducts h1{
     font-size: 30px;
@@ -19,7 +27,7 @@
     margin: 30px 0;
     font-weight: bold;
     position:relative;
-    right: 30px;
+    right: -30%;
 }
 .AddProducts label{
     font-size: 10px;
@@ -27,10 +35,12 @@
     display: block;
 }
 .AddProducts input, .AddProducts select{
-    width: 200%;
+    width: 160%;
     padding: 6px 10px;
     margin: 7px 0;
     border: 1px solid #5b5959;
+    background: #fff;
+
     border-radius: 10px;
     box-sizing: border-box;
     display: block;
@@ -43,5 +53,7 @@
     border-radius: 10px;
     cursor: pointer;
     position:relative;
-    right: -270px;
+    right: -103%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

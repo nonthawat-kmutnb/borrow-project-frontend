@@ -5,9 +5,9 @@ import Summary  from "../css/Summary.css";
 
 function App() {
   const data = [
-    { name: "name", tel: '08xxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
-    { name: "name", tel: '08xxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
-    { name: "name", tel: '08xxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
+    { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
+    { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
+    { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
   ]
 
   return (
@@ -17,8 +17,8 @@ function App() {
         <div>
           <h1>Summary</h1>
         </div>
-
       </div>
+      
       <div className='Summary-container-Content' style={{backgroundColor: '#dddddd'}}>
           <div className='Summary-container-Table'>
           <table striped="columns">
@@ -26,16 +26,24 @@ function App() {
               
               <th>Name</th>
               <th>Tel</th>
+              <th>Serial Number</th>
               <th>Due Date</th>
               <th>Checkout</th>
               <th>Comment</th>
-              <th></th>
+              <th>
+              <button 
+                    className="add_button"
+                  >
+                    Add
+                  </button>
+              </th>
             </tr>
             {data.map((val, key) => {
               return (
                 <tr key={key}>
                   <td>{val.name}</td>
                   <td>{val.tel}</td>
+                  <td>{val.serial}</td>
                   <td>{val.due_date}</td>
                   <td>{val.checkout}</td>
                   <td>{val.comment}</td>
@@ -53,8 +61,8 @@ function App() {
           </div>
           <div className='add_button_container' style={{ display: 'flex', justifyContent: 'flex-end' }}>
           <button 
-            className="add_button" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    Add
+            className="submit_button" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    Submit
           </button>
           </div>
         </div>
