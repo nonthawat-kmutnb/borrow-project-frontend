@@ -5,7 +5,7 @@ import { Dropdown, Text, Button } from "@nextui-org/react";
 function FilterComponent({ borderColor }) {
     const style = {
         width: 800,
-        height: "s",
+        height: "auto",
         borderColor: borderColor
     };
 
