@@ -5,7 +5,7 @@ import { Dropdown, Text, Button } from "@nextui-org/react";
 function FilterComponent({ borderColor }) {
     const style = {
         width: 800,
-        height: 100,
+        height: "auto",
         borderColor: borderColor
     };
 
@@ -92,7 +92,7 @@ function FilterComponent({ borderColor }) {
                             </Dropdown.Menu>
                         </Dropdown>
                     </div>
-                    <div style={{ alignItems: "center", justifyContent: "center", height: "100vh" }}>
+                    <div style={{ alignItems: "center", justifyContent: "center" }}>
                         <div style={{ margin: "30px" }}>
                             <Button auto color="#000000" rounded flat>Search</Button>
                         </div>

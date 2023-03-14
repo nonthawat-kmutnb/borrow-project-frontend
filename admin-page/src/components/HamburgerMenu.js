@@ -11,7 +11,7 @@ const HamburgerMenu = () => {
 
   const location = useLocation()
   
-  const isHomePage = location.pathname === '/' || location.pathname === '/admin';
+  const isHomePage = location.pathname === '/' || location.pathname === '/admin' || location.pathname === '/admin/';
 
   return (
     <div className={`hamburger-menu ${isHomePage ? 'hide' : 'open'}`} ref={menuRef}>
