@@ -12,7 +12,9 @@ import '../css/Home.css'
 function App() {
 
   const [products,setProducts] = React.useState([])
+  const isImage = (image) => image === null
   const fetchData = ()=>{
+
 
     axios
     .get("http://localhost:8080/productItem")
@@ -46,8 +48,8 @@ function App() {
         <div className="product-container">
           {products.slice(0).map((data, index) => (
             <SquareImage
-            // imageUrl={data.product.image}
-            imageUrl="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"
+            imageUrl={data.product.image ? data.product.image : "https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"}
+            // imageUrl="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"
             title={data.product.name}
             description={data.product.description}
             amount = {data.product.availableAmount}
