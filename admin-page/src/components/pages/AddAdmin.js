@@ -21,10 +21,24 @@ function App() {
         <header className="App-header">
           <div className="add-admin-container" style={{backgroundColor: '#dddddd'}}>
             <h1>Add Admin</h1>
+            <label>Username :</label>
+            <input
+              type="username"
+              placeholder="Enter Username"
+              // value={email}
+              // onChange={handleInputChange}
+            />
             <label>Email :</label>
             <input
               type="email"
               placeholder="Enter Email"
+              // value={email}
+              // onChange={handleInputChange}
+            />
+            <label>Password :</label>
+            <input
+              type="password"
+              placeholder="Enter Password"
               // value={email}
               // onChange={handleInputChange}
             />
