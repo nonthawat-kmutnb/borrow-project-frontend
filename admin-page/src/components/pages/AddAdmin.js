@@ -24,23 +24,19 @@ function App() {
             <label>Username :</label>
             <input
               type="username"
-              placeholder="Enter Username"
-              // value={email}
-              // onChange={handleInputChange}
+              placeholder="Enter Username"              
             />
             <label>Email :</label>
             <input
               type="email"
-              placeholder="Enter Email"
+              placeholder="Enter Email"    
               // value={email}
-              // onChange={handleInputChange}
+              // onChange={handleInputChange}        
             />
             <label>Password :</label>
             <input
               type="password"
-              placeholder="Enter Password"
-              // value={email}
-              // onChange={handleInputChange}
+              placeholder="Enter Password"              
             />
             <div className="add-admin-container-button">
               <OrangeButton to="/admin/password" text="Add"/>
