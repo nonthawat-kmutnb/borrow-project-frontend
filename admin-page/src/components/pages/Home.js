@@ -19,8 +19,9 @@ function App() {
   //   }
   // }
   
-  const fetchData = async()=>{
+  const [options, setOptions] = React.useState([]);
 
+  const fetchData = async()=>{
     await
     axios
     .get("http://localhost:3000/productItem")
@@ -29,12 +30,26 @@ function App() {
       setProducts(response.data)
     })
     .catch(err=>alert(err))
-    
+    axios.get("http://localhost:3000/products")
+        .then(response => {
+            const options = response.data.map(item => ({
+            value: item.id,
+            label: item.name
+            }));
+            setOptions(options);
+        })
+        .catch(error => {
+            console.error(error);})
   }
 
   React.useEffect(()=>{
+    // if (products.length = 0){
+    //   fetchData()// eslint-disable-next-line
+    // }
     fetchData()// eslint-disable-next-line
   },[])
+
+
     
 
   return (
@@ -51,7 +66,7 @@ function App() {
             </header>
             <p>by cpr.e kmutnb 18 - 19</p>
         </div>
-        <FilterComponent />
+        <FilterComponent options={options} onUpdateData={setProducts}/>
         <div className="product-container">
           {products.slice(0).map((data, index) => (
             <SquareImage
