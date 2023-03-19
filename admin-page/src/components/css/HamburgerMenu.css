@@ -49,12 +49,13 @@
   .kmutnb-logo {
     width: 70px;
     height: 70px;
-    margin-right: 90px;
+    margin-right: 0px;
     margin-top: 10px;
+    
   }
   .ece-logo {
     width: 70px;
     height: 70px;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-top: -65px;
   }

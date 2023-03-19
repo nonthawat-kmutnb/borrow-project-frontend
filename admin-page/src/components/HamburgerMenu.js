@@ -3,7 +3,7 @@ import './css/HamburgerMenu.css';
 import ButtonComponent from './ButtonComponent';
 import kmutnb from './image/kmutnb.png';
 import ece from './image/ece.png';
-import { useLocation } from 'react-router-dom'
+import { useLocation,Link } from 'react-router-dom'
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,8 +15,15 @@ const HamburgerMenu = () => {
 
   return (
     <div className={`hamburger-menu ${isHomePage ? 'hide' : 'open'}`} ref={menuRef}>
+
+      <div>
+      <Link to="/">
       <img src={kmutnb} alt="kmutnb" className="kmutnb-logo"/>
+      </Link>
+      <Link to="/">
       <img src={ece} alt="ece" className="ece-logo"/>
+      </Link>
+      </div>
       <ul>
         {/* <ButtonComponent to="/" text="Home"/> */}
         <ButtonComponent to="/admin/rent" text="Rent"/>

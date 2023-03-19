@@ -4,6 +4,8 @@ import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage';
 import AddProduct from '../css/AddProducts.css'
 import swal from 'sweetalert';
+import axiosInstance from 'axios';
+
 function AddProducts() {
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
@@ -14,6 +16,13 @@ function AddProducts() {
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}))
   }
+
+  const config = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
+    }
+};
 
   useEffect(() => {
     if (images.length < 1) return;
@@ -35,10 +44,11 @@ function AddProducts() {
 
     if ( inputs.name !== undefined && inputs.serialNumberRef !== undefined && images.length !== 0 && imageURLs.length !== 0 ) {
 
+      axiosInstance.post(`http://localhost:3000/transaction`, inputs, config)
+      
     swal("Success", "Add products Succes", "success", {
       buttons: false,
       timer: 1000,
-
     })
     .then((value) => {
       window.location.href = "/admin/add-products";

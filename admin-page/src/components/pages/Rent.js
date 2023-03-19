@@ -3,6 +3,8 @@ import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage';
 import Rent from "../css/Rent.css"
 import swal from 'sweetalert';
+import axiosInstance from 'axios';
+
 function Rental() {
 
 
@@ -13,21 +15,34 @@ function Rental() {
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}))
   }
-
+  const config = {
+    headers: {
+        'Accept': '*/*',
+    }
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (inputs.email !== undefined && inputs.username !== undefined && inputs.StudentID !== undefined && inputs.phoneNumber !== undefined && inputs.location !== undefined && inputs.serialNumberRef !== undefined) {
+    if (inputs.email !== undefined && inputs.username !== undefined && inputs.deadline !== undefined && inputs.phoneNumber !== undefined && inputs.location !== undefined && inputs.serialNumberRef !== undefined) {
 
     console.log(inputs.E_Mail)
-    swal("Success", "Rent Succes", "success", {
+    axiosInstance.post(`http://localhost:3000/transaction`, inputs, config)
+    .then((value) => {
+
+      swal("Success", "Rent Succes", "success", {
+        buttons: false,
+        timer: 1000,
+  
+      })
+
+      window.location.href = "/admin/rent";
+    }).catch(respon=>      
+      swal("Failed", respon.response.data.message, "error", {
       buttons: false,
       timer: 1000,
 
-    })
-    .then((value) => {
-      window.location.href = "/admin/rent";
-    });
+    }));
+    
     console.log(inputs)
   } else {
     swal("Failed", "Please complete the information.", "error");
@@ -49,13 +64,13 @@ function Rental() {
               value={inputs.username || ""} 
               onChange={handleChange}
               placeholder="Enter Name"/>
-            <label>StudentID :</label>
+            {/* <label>StudentID :</label>
             <input
               type="text"
               name="StudentID" 
               value={inputs.StudentID || ""} 
               onChange={handleChange}
-              placeholder="Enter StudentID"/>
+              placeholder="Enter StudentID"/> */}
             <label>PhoneNumber :</label>
             <input
               type="text"
@@ -85,6 +100,14 @@ function Rental() {
               onChange={handleChange}
               placeholder="Enter SerialNumber"/>
             
+            <label>Deadline :</label>
+            <input
+              type="date"
+              name="deadline" 
+              value={inputs.deadline || ""} 
+              onChange={handleChange}
+              placeholder="Enter SerialNumber"/>
+
             <button>Confirm</button>
             </div>
             </form>

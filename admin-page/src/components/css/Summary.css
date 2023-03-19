@@ -74,41 +74,6 @@ td {
     
 }
 
-.add_button_container{
-
-    width: 75 px;
-    margin-top: 60px;
-    /* border: 2px solid red; */
-
-
-}
-
-.submit_button{
-    
-    background: #ff6004;
-    color: #fff;
-    border: 0;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 90px;
-    padding-right: 23px;
-    margin-right: 65px;
-
-}
-
-.add_button{
-    
-    background: #e6651b;
-    color: #fff;
-    border: 0;
-    padding: 10px;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 60px;
-    margin-right: 65px;
-
-}
 
 .Show-status{
     /* border: 2px solid red; */
@@ -128,8 +93,8 @@ td {
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-    /* width: 100px;
-    height: 50px; */
+    width: 100px;
+    height: 50px;
     padding-top: 7%;
     padding-bottom: 7%;
     
@@ -137,5 +102,5 @@ td {
     border-radius: 100px;
     position: relative;
     transition: background-color .2s;
-    
+    border: 0;
   }

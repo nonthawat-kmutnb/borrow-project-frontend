@@ -4,18 +4,49 @@ import HamburgerMenu from "../HamburgerMenu";
 import AnimatedPage from "../AnimatedPage";
 import EditProduct from "../css/EditProduct.css";
 import swal from 'sweetalert';
+import { useParams } from 'react-router-dom';
+import axiosInstance from 'axios';
+
 function App() {
+
+  const { id } = useParams();
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
   const [inputs, setInputs] = useState({});
+  const config = {
+    headers: {
+        'Accept': '*/*',
+        'Content-Type': 'multipart/form-data',
+    }
+};
+
+  const initialFormData = Object.freeze({
+    name: '',
+  });
 
   const handleChange = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setInputs(values => ({...values, [name]: value}))
+
+    updateFormData({
+      ...formData,
+      [event.target.name]: event.target.value.trim(),
+  });
+
   }
 
+  const [formData, updateFormData] = useState(initialFormData);
   useEffect(() => {
+
+    axiosInstance.get(`http://localhost:3000/productItem/id/${id}`, config).then((res) => {
+			updateFormData({
+				...formData,
+				['name']: res.data.product.name,
+        ['serialNumber']: res.data.serialNumber,
+
+			});
+
+			console.log(res.data);
+		}, [updateFormData]);
+
     if (images.length < 1) return;
     const newImageUrls = [];
     images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
@@ -30,6 +61,7 @@ function App() {
   console.log("imageURLs : ", imageURLs);
   
   const handleSubmit = (event) => {
+
     event.preventDefault();
 
     if ( inputs.name !== undefined && inputs.serialNumberRef !== undefined && images.length !== 0 && imageURLs.length !== 0 ) {
@@ -66,14 +98,14 @@ function App() {
               <label>Name :</label>
               <input type="text"               
               name="name" 
-              value={inputs.name || ""} 
+              value={formData.name } 
               onChange={handleChange}
               placeholder="Enter Name" />
 
               <label>SerialNumber :</label>
               <input type="text" 
               name="serialNumberRef" 
-              value={inputs.serialNumberRef || ""} 
+              value={formData.serialNumber || ""} 
               onChange={handleChange}
               placeholder="Enter SerialNumber" />
 

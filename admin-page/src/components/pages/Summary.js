@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { React, useState,useEffect } from 'react';
 import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage';
 import Summary  from "../css/Summary.css";
 import swal from 'sweetalert';
-
-
+import axios from 'axios';
+import axiosInstance from 'axios';
 const data = [
   { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment',status:true},
   { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment',status:false},
@@ -12,31 +12,26 @@ const data = [
 ]
 
 function App() {
-  const [value, setValue] = useState(false);
-  const [Text, setText] = useState('Non return');
 
-  const columns = React.useMemo(
-    () => [
-      {
-        Header: "Name",
-        accessor: "name",
-      },
-      {
-        Header: "Title",
-        accessor: "title",
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-      },
-      {
-        Header: "Role",
-        accessor: "role",
-      },
-    ],
-    []
-  );
+  const [Text, setText] = useState('Non return');
+  const [SummaryData,SetSummaryData] = useState([]);
   
+  const fetchData = async()=>{
+
+    axios
+    .get("http://localhost:3000/transaction")
+    .then(response=>{
+      console.log(response.data)
+      SetSummaryData(response.data)
+    })
+    .catch(err=>alert(err))
+    
+  }
+
+  useEffect(()=>{
+    fetchData()// eslint-disable-next-line
+  },[])
+
   function ShowText(val) {
     if (val) {
       return 'Return';
@@ -44,9 +39,14 @@ function App() {
     return 'Non Return';
   }
   
+  const config = {
+    headers: {
+        'Accept': '*/*',
+    }
+};
 
-  const handleChange = (val) => { 
-    
+  const handleChange = (num,isreturn) => { 
+        console.log(num)
         swal({
             title: "Are you sure?",
             text: "Confirmed for sure or not that it was returned",
@@ -54,20 +54,40 @@ function App() {
             buttons: true,
             dangerMode: true,
           })
+
           .then((willDelete) => {
+
             if (willDelete) {
               swal("Update status success", {
                 icon: "success",
-                
+              }).then((value) => {
+              axiosInstance.put(`http://localhost:3000/transaction/status/${num}`,{
+              'isReturn': !isreturn},config 
+              );
+                window.location.href = "/admin/summary";
               });
-              setValue(!value);
-            } else {
-              // swal("Your imaginary file is safe!");
             }
           });
         
       }; 
 
+    function formatDate(date) {
+      
+      if (date !== null){
+        var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
+  
+        if (month.length < 2) 
+          month = '0' + month;
+        if (day.length < 2) 
+          day = '0' + day;
+  
+        return [year, month, day].join('-');
+      }
+
+    }
 
   return (
     <AnimatedPage>
@@ -83,50 +103,42 @@ function App() {
           <table striped="columns">
             <tr>
               
-              <th>Name</th>
+              <th>Email</th>
               <th>Tel</th>
               <th>Serial Number</th>
               <th>Due Date</th>
               <th>Checkout</th>
-              <th>Comment</th>
+              {/* <th>Comment</th> */}
               <th>Status</th>
-              <th>
-              </th>
             </tr>
 
-            {data.map((val, key) => {
+            {SummaryData.map((val, key) => {
               return (
+                
                 <tr key={key}>
-                  <td>{val.name}</td>
-                  <td>{val.tel}</td>
-                  <td>{val.serial}</td>
-                  <td>{val.due_date}</td>
-                  <td>{val.checkout}</td>
-                  <td>{val.comment}</td>
+                  <td>{val.user.email}</td>
+                  <td>{val.user.phoneNumber}</td>
+                  <td>{val.serialNumberRef}</td>
+                  <td>{formatDate(val.deadline)}</td>
+                  <td>{formatDate(val.endDate)}</td>
+                  {/* <td>{val.comment}</td> */}
                   <td>
-
+                  {console.log(val.name)}
                   <>
-                      <input
-                        checked={value}
-                        onChange={() => handleChange(val.id)}
-                        className="react-switch-checkbox"
-                        id={`react-switch-new`}
-                        type="checkbox"
-                      />
-                      <label
-
-                      style={{ background: value && "#97FDAD"}}
+ 
+                      <button
+                       onClick={() => handleChange(val.id,val.isReturn)}
+                        style={{ background: val.isReturn && "#97FDAD"}}
                         className="react-switch-label"
-                        htmlFor={`react-switch-new`}
                       >
                       <div className="Show-status">
                         <p style={{fontSize: '0.8rem'}}>
-                        <span className="react-span-status" style={{color: value ? "#0F7605":'#8E0000',fontWeight: 'bold',borderColor: 'black'}}>
-                        {ShowText(value)}
+                        <span className="react-span-status" style={{color: val.isReturn ? "#0F7605":'#8E0000',fontWeight: 'bold',borderColor: 'black'}}>
+                        {ShowText(val.isReturn)}
                         </span>
                         </p>
                       </div>
-                      </label>
+                      </button>
                     </>
 
                 </td>

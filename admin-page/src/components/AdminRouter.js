@@ -16,7 +16,7 @@ const NavRouter = () => {
     <AnimatePresence>
       <Routes>
           <Route path="/admin" element={<AdminLogin/>} />
-          <Route path="/admin/edit-product" element={<EditProduct/>} />
+          <Route path="/admin/edit-product/:id" element={<EditProduct/>} />
           <Route path="/admin/rent" element={<Rent/>} />
           <Route path="/admin/products" element={<Products/>} />
           <Route path="/admin/add-products" element={<AddProducts/>} />
