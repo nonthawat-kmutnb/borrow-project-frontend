@@ -3,17 +3,19 @@ import "./css/FilterComponent.css";
 import { Dropdown, Text, Button } from "@nextui-org/react";
 import axios from 'axios';
 
-function FilterComponent({ borderColor , options, onUpdateData}) {
+function FilterComponent({ borderColor , options,source,category, onUpdateData}) {
     const style = {
-        width: 800,
+        width: "auto",
         height: "auto",
         borderColor: borderColor
     };
 
     const optionsData = options
+    const sourceData = source
+    const categoryData = category
 
-    const SourceList = ["ครุภัณฑ์สำนักงาน", "ครุภัณฑ์ประจำห้องปฏิบัติการ"]
-    const CateList = ["ครุภัณฑ์เคลื่อนย้ายได้", "ประจำโต๊ะ", "Instrument"]
+    const SourceList = sourceData.map(item => item.label)
+    const CateList = categoryData.map(item => item.label)
     const ProdList = optionsData.map(item => item.label)
 
     const [data, setData] = React.useState([])
@@ -37,9 +39,15 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
 
     const onclickBtn = (e) => {
         // e.preventDefault()
-        const selectobject = optionsData.find(item => item.label === selectedValueProd)
-        const selectid = selectobject ? selectobject.value : null
-        axios.get(`http://localhost:3000/productItem/products/${selectid}`)
+        const selectProdObject = optionsData.find(item => item.label === selectedValueProd)
+        const selectProdId = selectProdObject ? selectProdObject.value : ""
+        const selectSrcObject = sourceData.find(item => item.label === selectedValueSource)
+        const selectSrcId = selectSrcObject ? selectSrcObject.value : ""
+        const selectCateObject = categoryData.find(item => item.label === selectedValueCate)
+        const selectCateId = selectCateObject ? selectCateObject.value : ""
+
+        axios
+        .get(`http://localhost:3000/productItem?sourceId=${selectSrcId}&categoryId=${selectCateId}&productId=${selectProdId}`)
         .then(response=>{
             console.log(response.data)
             setData(response.data)
@@ -56,7 +64,7 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
                         <Text>Source</Text>
                         <Dropdown>
                             <Dropdown.Button flat color="#000000" css={{ tt: "capitalize", width: "175px" }}>
-                                {selectedValueSource}
+                                {selectedValueSource ? selectedValueSource : "None"}
                             </Dropdown.Button>
                             <Dropdown.Menu
                                 aria-label="Single selection actions"
@@ -65,7 +73,9 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
                                 selectionMode="single"
                                 selectedKeys={selected1}
                                 onSelectionChange={setSelected1}
+                                css={{minWidth: '300px'}}
                             >
+                                <Dropdown.Item key="" css={{width: '450px'}}>None</Dropdown.Item>
                                 {SourceList.slice(0).map((data, index) => (
                                     <Dropdown.Item key={data}>{data}</Dropdown.Item>
                                 ))}
@@ -76,7 +86,7 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
                         <Text>Categories</Text>
                         <Dropdown>
                             <Dropdown.Button flat color="#000000" css={{ tt: "capitalize", width: "175px" }}>
-                                {selectedValueCate}
+                                {selectedValueCate ? selectedValueCate : "None"}
                             </Dropdown.Button>
                             <Dropdown.Menu
                                 aria-label="Single selection actions"
@@ -85,7 +95,9 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
                                 selectionMode="single"
                                 selectedKeys={selected2}
                                 onSelectionChange={setSelected2}
+                                css={{minWidth: '300px'}}
                             >
+                                <Dropdown.Item key="" css={{width: '450px'}}>None</Dropdown.Item>
                                 {CateList.slice(0).map((data, index) => (
                                     <Dropdown.Item key={data}>{data}</Dropdown.Item>
                                 ))}
@@ -96,7 +108,7 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
                         <Text>Product</Text>
                         <Dropdown>
                             <Dropdown.Button flat color="#000000" css={{ tt: "capitalize", width: "175px" }}>
-                                {selectedValueProd}
+                                {selectedValueProd ? selectedValueProd : "None"}
                             </Dropdown.Button>
                             <Dropdown.Menu
                                 aria-label="Single selection actions"
@@ -107,6 +119,7 @@ function FilterComponent({ borderColor , options, onUpdateData}) {
                                 onSelectionChange={setSelected3}
                                 css={{minWidth: '450px'}}
                             >
+                                <Dropdown.Item key="" css={{width: '450px'}}>None</Dropdown.Item>
                                 {ProdList.map((item) => (
                                     <Dropdown.Item key={item} css={{width: '450px'}}>{item}</Dropdown.Item>
                                 ))}

@@ -20,6 +20,9 @@ function App() {
   // }
   
   const [options, setOptions] = React.useState([]);
+  const [source, setSource] = React.useState([]);
+  const [category, setCategory] = React.useState([]);
+
 
   const fetchData = async()=>{
     await
@@ -40,6 +43,29 @@ function App() {
         })
         .catch(error => {
             console.error(error);})
+    axios
+    .get("http://localhost:3000/source")
+    .then(response => {
+        const source = response.data.map(item => ({
+        value: item.id,
+        label: item.name
+        }));
+        setSource(source);
+    })
+    .catch(error => {
+        console.error(error);})     
+    axios
+    .get("http://localhost:3000/category")
+    .then(response => {
+        const category = response.data.map(item => ({
+        value: item.id,
+        label: item.title
+        }));
+        setCategory(category);
+    })
+    .catch(error => {
+        console.error(error);})  
+    
   }
 
   React.useEffect(()=>{
@@ -66,7 +92,7 @@ function App() {
             </header>
             <p>by cpr.e kmutnb 18 - 19</p>
         </div>
-        <FilterComponent options={options} onUpdateData={setProducts}/>
+        <FilterComponent options={options} source={source} category={category} onUpdateData={setProducts}/>
         <div className="product-container">
           {products.slice(0).map((data, index) => (
             <SquareImage
