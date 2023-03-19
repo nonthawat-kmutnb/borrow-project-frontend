@@ -16,6 +16,28 @@ function App() {
   const navigateToEditproduct = () => {
     navigate('/admin/edit-product');
   };
+
+  const deleteTableRows = (no) => {
+    console.log(no)
+    swal({
+      title: "Are you sure?",
+      text: "Confirmed for sure or not that it was returned",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Delete success", {
+          icon: "success",
+          
+        });
+
+      } else {
+        // swal("Your imaginary file is safe!");
+      }
+    });
+  };
   return (
     <AnimatedPage>
   
@@ -30,6 +52,7 @@ function App() {
           <table striped="columns">
             <tr >
               
+              <th>id</th>
               <th>Name</th>
               <th>Serial Number</th>
               <th>Category</th>
@@ -51,6 +74,7 @@ function App() {
                     Edit
                   </button>
                   <button 
+                    onClick={()=>(deleteTableRows(val.serial))}
                     className="delete-button"
                   >
                     Delete

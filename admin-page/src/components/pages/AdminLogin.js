@@ -15,8 +15,9 @@ function App() {
   const [password, setPassword] = useState();
 
   const handleSubmit = async e =>  {
+    console.log(username)
   e.preventDefault();
-    if (true) {
+    if (username !== undefined && password !== undefined) {
 
       swal("Success", "Login Succes", "success", {
         buttons: false,

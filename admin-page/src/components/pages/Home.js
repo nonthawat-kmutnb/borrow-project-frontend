@@ -13,12 +13,19 @@ function App() {
 
   const [products,setProducts] = React.useState([])
   const isImage = (image) => image === null
-  const fetchData = ()=>{
+  // const config = {
+  //   headers: { 
+  //     'Cookie': 'csrftoken=xiWboHDyASPhrFR7GqNz3MhWOGolGGa6'
+  //   }
+  // }
+  
+  const fetchData = async()=>{
 
-
+    await
     axios
-    .get("http://localhost:8080/productItem")
+    .get("http://localhost:3000/productItem")
     .then(response=>{
+      console.log(response.data)
       setProducts(response.data)
     })
     .catch(err=>alert(err))

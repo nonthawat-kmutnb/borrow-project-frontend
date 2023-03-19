@@ -3,10 +3,17 @@ import { useState, useEffect } from "react";
 import HamburgerMenu from "../HamburgerMenu";
 import AnimatedPage from "../AnimatedPage";
 import EditProduct from "../css/EditProduct.css";
-
+import swal from 'sweetalert';
 function App() {
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
+  const [inputs, setInputs] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
 
   useEffect(() => {
     if (images.length < 1) return;
@@ -22,6 +29,25 @@ function App() {
   console.log("Images : ", images);
   console.log("imageURLs : ", imageURLs);
   
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if ( inputs.name !== undefined && inputs.serialNumberRef !== undefined && images.length !== 0 && imageURLs.length !== 0 ) {
+
+    swal("Success", "Edit products Succes", "success", {
+      buttons: false,
+      timer: 1000,
+
+    })
+    .then((value) => {
+      window.location.href = "/admin/Products";
+    });
+    console.log(inputs)
+  } else {
+    swal("Failed", "Please complete the information.", "error");
+  }
+  }
+
   return (
     <AnimatedPage>
       <div
@@ -34,14 +60,29 @@ function App() {
           </div>
         </div>
         <div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="sub-con">
+
               <label>Name :</label>
-              <input type="text" placeholder="Enter Name" />
+              <input type="text"               
+              name="name" 
+              value={inputs.name || ""} 
+              onChange={handleChange}
+              placeholder="Enter Name" />
+
               <label>SerialNumber :</label>
-              <input type="text" placeholder="Enter SerialNumber" />
+              <input type="text" 
+              name="serialNumberRef" 
+              value={inputs.serialNumberRef || ""} 
+              onChange={handleChange}
+              placeholder="Enter SerialNumber" />
+
               <label>Category :</label>
-              <select>
+              <select
+                name="category_object" 
+                value={inputs.category_object || ""} 
+                onChange={handleChange}
+                >
                 <option value="Circuit Breakers">Circuit Breakers</option>
                 <option value="Magnetic Starters">Magnetic Starters</option>
                 <option value="Lighting ">Lighting </option>
@@ -51,7 +92,7 @@ function App() {
                 <option value="Switches">Switches</option>
                 <option value="Relays">Relays</option>
               </select>
-              <label>Type :</label>
+              {/* <label>Type :</label>
               <select>
                 <option value="Circuit Breakers">Circuit Breakers</option>
                 <option value="Magnetic Starters">Magnetic Starters</option>
@@ -61,7 +102,7 @@ function App() {
                 <option value="Transformers">Transformers</option>
                 <option value="Switches">Switches</option>
                 <option value="Relays">Relays</option>
-              </select>
+              </select> */}
               <label>Image :</label>
               <input
                 type="file"

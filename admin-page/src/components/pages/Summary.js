@@ -1,14 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HamburgerMenu from '../HamburgerMenu';
 import AnimatedPage from '../AnimatedPage';
 import Summary  from "../css/Summary.css";
+import swal from 'sweetalert';
+
+
+const data = [
+  { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment',status:true},
+  { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment',status:false},
+  { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment',status:true},
+]
 
 function App() {
-  const data = [
-    { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
-    { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
-    { name: "name", tel: '08xxxxxxxx', serial: 'xxxxxxxxxx', due_date: "due_date" ,checkout:'checkout',comment:'comment'},
-  ]
+  const [value, setValue] = useState(false);
+  const [Text, setText] = useState('Non return');
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Name",
+        accessor: "name",
+      },
+      {
+        Header: "Title",
+        accessor: "title",
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+      },
+      {
+        Header: "Role",
+        accessor: "role",
+      },
+    ],
+    []
+  );
+  
+  function ShowText(val) {
+    if (val) {
+      return 'Return';
+    }
+    return 'Non Return';
+  }
+  
+
+  const handleChange = (val) => { 
+    
+        swal({
+            title: "Are you sure?",
+            text: "Confirmed for sure or not that it was returned",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              swal("Update status success", {
+                icon: "success",
+                
+              });
+              setValue(!value);
+            } else {
+              // swal("Your imaginary file is safe!");
+            }
+          });
+        
+      }; 
+
 
   return (
     <AnimatedPage>
@@ -22,7 +81,7 @@ function App() {
       <div className='Summary-container-Content' style={{backgroundColor: '#dddddd'}}>
           <div className='Summary-container-Table'>
           <table striped="columns">
-            <tr >
+            <tr>
               
               <th>Name</th>
               <th>Tel</th>
@@ -30,14 +89,11 @@ function App() {
               <th>Due Date</th>
               <th>Checkout</th>
               <th>Comment</th>
+              <th>Status</th>
               <th>
-              <button 
-                    className="add_button"
-                  >
-                    Add
-                  </button>
               </th>
             </tr>
+
             {data.map((val, key) => {
               return (
                 <tr key={key}>
@@ -48,22 +104,36 @@ function App() {
                   <td>{val.checkout}</td>
                   <td>{val.comment}</td>
                   <td>
-                  <button 
-                    className="sum-button"
-                  >
-                    Delete
-                  </button>
+
+                  <>
+                      <input
+                        checked={value}
+                        onChange={() => handleChange(val.id)}
+                        className="react-switch-checkbox"
+                        id={`react-switch-new`}
+                        type="checkbox"
+                      />
+                      <label
+
+                      style={{ background: value && "#97FDAD"}}
+                        className="react-switch-label"
+                        htmlFor={`react-switch-new`}
+                      >
+                      <div className="Show-status">
+                        <p style={{fontSize: '0.8rem'}}>
+                        <span className="react-span-status" style={{color: value ? "#0F7605":'#8E0000',fontWeight: 'bold',borderColor: 'black'}}>
+                        {ShowText(value)}
+                        </span>
+                        </p>
+                      </div>
+                      </label>
+                    </>
+
                 </td>
                 </tr>
               )
             })}
           </table>
-          </div>
-          <div className='add_button_container' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <button 
-            className="submit_button" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    Submit
-          </button>
           </div>
         </div>
 
