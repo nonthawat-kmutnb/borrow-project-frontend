@@ -7,6 +7,11 @@ import swal from 'sweetalert';
 import axiosInstance from 'axios';
 
 function AddProducts() {
+  const token = localStorage.getItem('token');
+  if(!token) {
+    window.location.href = "/admin";
+  }
+  
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
   const [inputs, setInputs] = useState({});

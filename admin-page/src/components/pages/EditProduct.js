@@ -8,6 +8,11 @@ import { useParams } from 'react-router-dom';
 import axiosInstance from 'axios';
 
 function App() {
+  const token = localStorage.getItem('token');
+  if(!token) {
+    window.location.href = "/admin";
+  }
+  
 
   const { id } = useParams();
   const [images, setImages] = useState([]);

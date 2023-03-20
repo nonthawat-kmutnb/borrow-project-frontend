@@ -7,9 +7,13 @@ import axiosInstance from 'axios';
 
 function Rental() {
 
-
+  const token = localStorage.getItem('token');
+  if(!token) {
+    window.location.href = "/admin";
+  }
+  
   const [inputs, setInputs] = useState({});
-
+  
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -25,25 +29,21 @@ function Rental() {
 
     if (inputs.email !== undefined && inputs.username !== undefined && inputs.deadline !== undefined && inputs.phoneNumber !== undefined && inputs.location !== undefined && inputs.serialNumberRef !== undefined) {
 
-    console.log(inputs.E_Mail)
     axiosInstance.post(`http://localhost:3000/transaction`, inputs, config)
+    swal("Success", "Rent Succes", "success", {
+      buttons: false,
+      timer: 2000,
+
+    })
     .then((value) => {
-
-      swal("Success", "Rent Succes", "success", {
-        buttons: false,
-        timer: 1000,
-  
-      })
-
       window.location.href = "/admin/rent";
     }).catch(respon=>      
       swal("Failed", respon.response.data.message, "error", {
       buttons: false,
-      timer: 1000,
+      timer: 2000,
 
     }));
     
-    console.log(inputs)
   } else {
     swal("Failed", "Please complete the information.", "error");
   }

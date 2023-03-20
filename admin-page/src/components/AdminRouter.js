@@ -12,6 +12,7 @@ import EditProduct from './pages/EditProduct';
 import { AnimatePresence } from "framer-motion"
 
 const NavRouter = () => {
+
   return (
     <AnimatePresence>
       <Routes>

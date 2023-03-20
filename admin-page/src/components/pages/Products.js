@@ -7,14 +7,18 @@ import swal from 'sweetalert';
 import axios from 'axios';
 
 function App() {
-  
-  const navigate = useNavigate();
 
+  const token = localStorage.getItem('token');
+  
+  if(!token) {
+    window.location.href = "/admin";
+  }
+  const navigate = useNavigate();
   const navigateToEditproduct = (id) => {
     navigate(`/admin/edit-product/${id}`);
   };
-
   const [productItem,SetproductItem] = useState([]);
+  const [category, setCategory] = useState([]);
   const config = {
     headers: {
         'Accept': '*/*',
@@ -30,9 +34,28 @@ function App() {
       SetproductItem(response.data)
     })
     .catch(err=>alert(err))
+
+    axios
+    .get("http://localhost:3000/category")
+    .then(response => {
+        const category = response.data.map(item => ({
+        value: item.id,
+        label: item.title
+        }));
+        setCategory(category);
+    })
+    
     
   }
 
+  function ShowCategory(val) {
+    if (val) {
+      return category[val-1].label;
+    }
+    return '';
+  }
+
+// console.log(category[0+1].label)
   useEffect(()=>{
     fetchData()// eslint-disable-next-line
   },[])
@@ -79,8 +102,10 @@ function App() {
               <th>Name</th>
               <th>Serial Number</th>
               <th>Room</th>
-              <th>room</th> 
               <th>Source</th>
+              <th>Category</th>
+              <th></th>
+              <th></th>
             </tr>
             {productItem.map((val, key) => {
               return (
@@ -90,12 +115,15 @@ function App() {
                   <td>{val.serialNumber}</td>
                   <td>{val.room.name}</td>
                   <td>{val.source.name}</td>
+                  <td>{ShowCategory(val.product.categoryId)}</td>
                   <td>
                   <button onClick={()=>(navigateToEditproduct(val.id))}
                     className="edit-button"
                   >
                     Edit
                   </button>
+                  </td>
+                  <td>
                   <button 
                     onClick={()=>(deleteTableRows(val.id))}
                     className="delete-button"

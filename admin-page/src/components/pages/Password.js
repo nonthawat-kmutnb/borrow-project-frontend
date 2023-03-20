@@ -6,6 +6,11 @@ import Password from "../css/Password.css"
 import swal from 'sweetalert';
 function App() {
 
+  const token = localStorage.getItem('token');
+  if(!token) {
+    window.location.href = "/admin";
+  }
+  
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {

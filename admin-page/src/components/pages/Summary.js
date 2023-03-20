@@ -13,6 +13,12 @@ const data = [
 
 function App() {
 
+
+  const token = localStorage.getItem('token');
+  if(!token) {
+    window.location.href = "/admin";
+  }
+  
   const [Text, setText] = useState('Non return');
   const [SummaryData,SetSummaryData] = useState([]);
   

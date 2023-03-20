@@ -6,29 +6,64 @@ import kmutnb from '../image/kmutnb.png';
 import ece from '../image/ece.png';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-
+import axiosInstance from 'axios';
 
 function App() {
 
   // const classes = useStyles();
-  const [username, setUserName] = useState();
+  const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
-  const handleSubmit = async e =>  {
-    console.log(username)
-  e.preventDefault();
-    if (username !== undefined && password !== undefined) {
-
-      swal("Success", "Login Succes", "success", {
-        buttons: false,
-        timer: 1000,
-      })
-      .then((value) => {
-        window.location.href = "/admin/rent";
-      });
-    } else {
-      swal("Failed", "Failed", "error");
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+        'Accept': '*/*',
     }
+  };
+  
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  const handleSubmit = async e =>  {
+    
+    e.preventDefault();
+    
+    var raw = JSON.stringify({
+      "email": email,
+      "password": password
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/admin", requestOptions)
+      .then(response =>response.json())
+      .then(result => 
+
+        {if ('token' in result){
+          
+          localStorage.setItem('token',result.token);
+          
+          swal("Success", "Login Succes", "success", {
+            buttons: false,
+            timer: 1000,
+          })
+          .then((value) => {
+            window.location.href = "/admin/rent";
+          });
+
+        }else {
+
+          swal("Failed", result.message, "error", {
+            buttons: false,
+            timer: 1000,
+          })
+
+        }
+          
+        console.log(result)})
   }
 
   return (
@@ -57,14 +92,14 @@ function App() {
               <form noValidate onSubmit={handleSubmit}>
 
                 <div className='float-Subchild'>
-                <label>Username :</label>
+                <label>Email :</label>
                 <input
-                  type="text"
-                  placeholder="Enter Username"
-                  onChange={e => setUserName(e.target.value)}/>
+                  type="email"
+                  placeholder="Enter Email"
+                  onChange={e => setEmail(e.target.value)}/>
                 <label>password :</label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="Enter password"
                   onChange={e => setPassword(e.target.value)}/>
                 </div >
