@@ -27,13 +27,13 @@ function App() {
   const fetchData = async()=>{
     await
     axios
-    .get("http://localhost:3000/productItem")
+    .get(`${process.env.REACT_APP_MONGO_API}/productItem`)
     .then(response=>{
       console.log(response.data)
       setProducts(response.data)
     })
     .catch(err=>alert(err))
-    axios.get("http://localhost:3000/products")
+    axios.get(`${process.env.REACT_APP_MONGO_API}/products`)
         .then(response => {
             const options = response.data.map(item => ({
             value: item.id,
@@ -44,7 +44,7 @@ function App() {
         .catch(error => {
             console.error(error);})
     axios
-    .get("http://localhost:3000/source")
+    .get(`${process.env.REACT_APP_MONGO_API}/source`)
     .then(response => {
         const source = response.data.map(item => ({
         value: item.id,
@@ -55,7 +55,7 @@ function App() {
     .catch(error => {
         console.error(error);})     
     axios
-    .get("http://localhost:3000/category")
+    .get(`${process.env.REACT_APP_MONGO_API}/category`)
     .then(response => {
         const category = response.data.map(item => ({
         value: item.id,
@@ -73,6 +73,7 @@ function App() {
     //   fetchData()// eslint-disable-next-line
     // }
     fetchData()// eslint-disable-next-line
+    console.log(process.env.REACT_APP_MONGO_API)
   },[])
 
 
