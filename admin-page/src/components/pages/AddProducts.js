@@ -86,20 +86,19 @@ function AddProducts() {
               onChange={handleChange}
               placeholder="Enter SerialNumber"/>
             <label>Category :</label>
-            <select 
-              name="category_object" 
-              value={inputs.category_object || ""} 
-              onChange={handleChange}
-              >
-              <option value="Circuit Breakers">Circuit Breakers</option>
-              <option value="Magnetic Starters">Magnetic Starters</option>
-              <option value="Lighting ">Lighting </option>
-              <option value="Cabling">Cabling</option>
-              <option value="Panel Boards">Panel Boards</option>
-              <option value="Transformers">Transformers</option>
-              <option value="Switches">Switches</option>
-              <option value="Relays">Relays</option>
-            </select>
+            <select
+                name="categoryId" 
+                value={inputs.categoryId || ""} 
+                onChange={handleChange}
+                >
+                <option value="1">ครุภัณฑ์ไฟฟ้าและวิทยุ</option>
+                <option value="2">ครุภัณฑ์โรงงาน</option>
+                <option value="3 ">ครุภัณฑ์การศึกษา</option>
+                <option value="4">ครุภัณฑ์วิทยาศาสตร์และการแพทย์</option>
+                <option value="5">ครุภัณฑ์คอมพิวเตอร์</option>
+                <option value="6">ครุภัณฑ์สำนักงาน</option>
+                <option value="">-</option>
+              </select>
             {/* <label>Type :</label>
             <select>
               <option value="Circuit Breakers">Circuit Breakers</option>
