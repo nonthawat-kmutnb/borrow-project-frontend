@@ -7,16 +7,18 @@ import swal from 'sweetalert';
 import axiosInstance from 'axios';
 
 function AddProducts() {
+
   const token = localStorage.getItem('token');
   if(!token) {
     window.location.href = "/admin";
   }
   
+  const [inputs, setInputs] = useState({});
+  const [postimage, setPostImage] = useState(null);
   const [images, setImages] = useState([]);
   const [imageURLs, setImageURLs] = useState([]);
-  const [inputs, setInputs] = useState({});
 
-  const handleChange = (event) => {
+  const handleChange = (event) => { 
     const name = event.target.name;
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}))
@@ -25,40 +27,55 @@ function AddProducts() {
   const config = {
     headers: {
         'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
+        'Content-Type': "application/json"
     }
 };
-
+  const config_img = {
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data',
+    }
+  };
   useEffect(() => {
     if (images.length < 1) return;
     const newImageUrls = [];
     images.forEach((image) => newImageUrls.push(URL.createObjectURL(image)));
     setImageURLs(newImageUrls);
   }, [images]);
-
   function onImageChange(e) {
+
+    setPostImage({
+      image: e.target.files,
+    });
 
     setImages([...e.target.files]);
   }
 
   console.log("Images : ", images);
   console.log("imageURLs : ", imageURLs);
-
+  // console.log(postimage)
+  let formData = new FormData();
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(inputs)
 
-    if ( inputs.name !== undefined && inputs.serialNumberRef !== undefined && images.length !== 0 && imageURLs.length !== 0 ) {
+    if ( inputs.name !== undefined && postimage != null) {
 
-      axiosInstance.post(`http://localhost:3000/transaction`, inputs, config)
-      
-    swal("Success", "Add products Succes", "success", {
-      buttons: false,
-      timer: 1000,
-    })
-    .then((value) => {
+      axiosInstance.post(`http://localhost:3000/products`, inputs, config).then(response=>{
+
+      console.log(response.data.id)
+      console.log(`http://localhost:3000/products/${response.data.id}/image`)
+      formData.append('product', postimage.image[0]);
+      axiosInstance.post(`http://localhost:3000/products/${response.data.id}/image`, formData, config_img);
+
+    }).then(() => {
+      swal("Success", "Add Products Succes", "success", {
+        buttons: false,
+        timer: 2000,
+      })
       window.location.href = "/admin/add-products";
     });
-    console.log(inputs)
+
   } else {
     swal("Failed", "Please complete the information.", "error");
   }
@@ -78,7 +95,34 @@ function AddProducts() {
               value={inputs.name || ""} 
               onChange={handleChange}
               placeholder="Enter Name"/>
-            <label>SerialNumber :</label>
+
+            <label>Image :</label>
+            <input type="file" accept="image/*" onChange={onImageChange} id="image" name="image"/>
+            {imageURLs.map((imageSrc, idx) => (
+            <img key={idx} width="640" height="360" src={imageSrc} />))}
+            <button>Add</button>
+          </form>
+          <HamburgerMenu />
+        
+      </div>
+    </AnimatedPage>
+
+  );
+}
+
+
+export default AddProducts;
+
+
+
+
+
+
+
+
+
+
+            {/* <label>SerialNumber :</label>
             <input
               type="text"
               name="serialNumberRef" 
@@ -98,31 +142,32 @@ function AddProducts() {
                 <option value="5">ครุภัณฑ์คอมพิวเตอร์</option>
                 <option value="6">ครุภัณฑ์สำนักงาน</option>
                 <option value="">-</option>
+
+              </select> */}
+              {/* <label>source :</label>
+            <select
+                name="sourceId" 
+                value={inputs.sourceId || ""} 
+                onChange={handleChange}
+                >
+                <option value="1">center</option>
+                <option value="2">department</option>
+                <option value="3 ">personal</option>
+                <option value="4">ภาควิชาวิศวกรรมไฟฟ้า</option>
+                <option value="5">สำนักงานภาควิชาวิศวกรรมไฟฟ้า</option>
+                <option value="6">นายสิทธิพร    เกิดสำอางค์</option>
+                
               </select>
-            {/* <label>Type :</label>
-            <select>
-              <option value="Circuit Breakers">Circuit Breakers</option>
-              <option value="Magnetic Starters">Magnetic Starters</option>
-              <option value="Lighting ">Lighting </option>
-              <option value="Cabling">Cabling</option>
-              <option value="Panel Boards">Panel Boards</option>
-              <option value="Transformers">Transformers</option>
-              <option value="Switches">Switches</option>
-              <option value="Relays">Relays</option>
-            </select> */}
-            <label>Image :</label>
-            <input type="file" multiple accept="image/*" onChange={onImageChange} />
-            {imageURLs.map((imageSrc, idx) => (
-            <img key={idx} width="640" height="360" src={imageSrc} />))}
-            <button>Add</button>
-          </form>
-          <HamburgerMenu />
-        
-      </div>
-    </AnimatedPage>
+              <label>source :</label>
+              <select
+                  name="roomId" 
+                  value={inputs.roomId || ""} 
+                  onChange={handleChange}
+                  >
+                  <option value="1">room1</option>
+                  <option value="2">room2</option>
+                  <option value="3 ">room3</option>
+                  
+                </select>
 
-  );
-}
-
-
-export default AddProducts;
+                <label>Products :</label> */}
