@@ -47,7 +47,7 @@ function FilterComponent({ borderColor , options,source,category, onUpdateData})
         const selectCateId = selectCateObject ? selectCateObject.value : ""
 
         axios
-        .get(`http://localhost:3000/productItem?sourceId=${selectSrcId}&categoryId=${selectCateId}&productId=${selectProdId}`)
+        .get(`${process.env.REACT_APP_API}/productItem?sourceId=${selectSrcId}&categoryId=${selectCateId}&productId=${selectProdId}`)
         .then(response=>{
             console.log(response.data)
             setData(response.data)

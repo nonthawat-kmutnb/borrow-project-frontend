@@ -45,8 +45,8 @@ const SquareImage = ({
                     <Text style={{marginLeft:"10px",marginBottom:"1px"}}>{usage_freq}</Text>
                     <Text b style={{marginLeft:"10px",marginBottom:"1px"}}>Serial</Text>
                     <Text style={{marginLeft:"10px",marginBottom:"1px"}}>{serialNo}</Text>
-                    <Text b style={{marginLeft:"10px",marginBottom:"1px"}}>Room</Text>
-                    <Text style={{marginLeft:"10px",marginBottom:"1px"}}>{room}</Text>
+                    {/* <Text b style={{marginLeft:"10px",marginBottom:"1px"}}>Room</Text> */}
+                    {/* <Text style={{marginLeft:"10px",marginBottom:"1px"}}>{room}</Text> */}
                     <Text b style={{marginLeft:"10px",marginBottom:"1px"}}>Source</Text>
                     <Text style={{marginLeft:"10px",marginBottom:"1px"}}>{source}</Text>
                 </Modal.Body>

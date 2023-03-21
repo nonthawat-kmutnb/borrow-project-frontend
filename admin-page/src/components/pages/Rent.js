@@ -29,7 +29,7 @@ function Rental() {
 
     if (inputs.email !== undefined && inputs.username !== undefined && inputs.deadline !== undefined && inputs.phoneNumber !== undefined && inputs.location !== undefined && inputs.serialNumberRef !== undefined) {
 
-    axiosInstance.post(`http://localhost:3000/transaction`, inputs, config)
+    axiosInstance.post(`${process.env.REACT_APP_API}/transaction`, inputs, config)
     swal("Success", "Rent Succes", "success", {
       buttons: false,
       timer: 2000,

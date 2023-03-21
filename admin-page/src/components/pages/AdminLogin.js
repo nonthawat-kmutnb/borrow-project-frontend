@@ -38,7 +38,7 @@ function App() {
       redirect: 'follow'
     };
 
-    fetch("http://localhost:3000/admin", requestOptions)
+    fetch(`${process.env.REACT_APP_API}/admin`, requestOptions)
       .then(response =>response.json())
       .then(result => 
 

@@ -9,10 +9,30 @@ import FilterComponent from '../FilterComponent';
 import axios from 'axios';
 
 import '../css/Home.css'
+
+function convert(hexImg) {
+  let input = hexImg.replace(/[^A-Fa-f0-9]/g, "");
+  if (input.length % 2) {
+      console.log("cleaned hex string length is odd.");
+      return;
+  }
+
+  let binary = new Array();
+  for (let i = 0; i < input.length / 2; i++) {
+      let h = input.substr(i * 2, 2);
+      binary[i] = parseInt(h, 16);
+  }
+
+  let byteArray = new Uint8Array(binary);
+
+  let imgURL = window.URL.createObjectURL(new Blob([byteArray], { type: 'application/octet-stream' }));
+  return(imgURL);
+}
+
 function App() {
 
   const [products,setProducts] = React.useState([])
-  const isImage = (image) => image === null
+  const isImage = (image) => image !== null
   // const config = {
   //   headers: { 
   //     'Cookie': 'csrftoken=xiWboHDyASPhrFR7GqNz3MhWOGolGGa6'
@@ -27,13 +47,13 @@ function App() {
   const fetchData = async()=>{
     await
     axios
-    .get(`${process.env.REACT_APP_MONGO_API}/productItem`)
+    .get(`${process.env.REACT_APP_API}/productItem`)
     .then(response=>{
       console.log(response.data)
       setProducts(response.data)
     })
     .catch(err=>alert(err))
-    axios.get(`${process.env.REACT_APP_MONGO_API}/products`)
+    axios.get(`${process.env.REACT_APP_API}/products`)
         .then(response => {
             const options = response.data.map(item => ({
             value: item.id,
@@ -44,7 +64,7 @@ function App() {
         .catch(error => {
             console.error(error);})
     axios
-    .get(`${process.env.REACT_APP_MONGO_API}/source`)
+    .get(`${process.env.REACT_APP_API}/source`)
     .then(response => {
         const source = response.data.map(item => ({
         value: item.id,
@@ -55,7 +75,7 @@ function App() {
     .catch(error => {
         console.error(error);})     
     axios
-    .get(`${process.env.REACT_APP_MONGO_API}/category`)
+    .get(`${process.env.REACT_APP_API}/category`)
     .then(response => {
         const category = response.data.map(item => ({
         value: item.id,
@@ -73,7 +93,7 @@ function App() {
     //   fetchData()// eslint-disable-next-line
     // }
     fetchData()// eslint-disable-next-line
-    console.log(process.env.REACT_APP_MONGO_API)
+    // console.log(process.env.REACT_APP_POSTGRESQL_API)
   },[])
 
 
@@ -97,7 +117,7 @@ function App() {
         <div className="product-container">
           {products.slice(0).map((data, index) => (
             <SquareImage
-            imageUrl={data.product.image ? data.product.image : "https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"}
+            imageUrl={isImage(data.product.image) ? convert(data.product.image) : "https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"}
             // imageUrl="https://png.pngtree.com/png-vector/20190120/ourlarge/pngtree-gallery-vector-icon-png-image_470660.jpg"
             title={data.product.name}
             description={data.product.description}
@@ -105,7 +125,7 @@ function App() {
             total_amount = {data.product.totalAmount}
             usage_freq = {data.product.usageFrequency}
             serialNo = {data.serialNumber}
-            room = {data.room.name}
+            // room = {data.room.name}
             source = {data.source.name}
             />
           ))}

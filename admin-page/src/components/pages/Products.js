@@ -28,7 +28,7 @@ function App() {
   const fetchData = async()=>{
 
     axios
-    .get("http://localhost:3000/productItem")
+    .get(`${process.env.REACT_APP_API}/productItem`)
     .then(response=>{
       console.log(response.data)
       SetproductItem(response.data)
@@ -36,7 +36,7 @@ function App() {
     .catch(err=>alert(err))
 
     axios
-    .get("http://localhost:3000/category")
+    .get(`${process.env.REACT_APP_API}/category`)
     .then(response => {
         const category = response.data.map(item => ({
         value: item.id,
@@ -75,7 +75,7 @@ function App() {
           icon: "success",
 
         }).then((value) => {
-          axios.delete(`http://localhost:3000/productItem/${no}`,config)
+          axios.delete(`${process.env.REACT_APP_API}/productItem/${no}`,config)
           window.location.href = "/admin/products";
           });
         

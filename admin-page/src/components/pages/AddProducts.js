@@ -49,7 +49,7 @@ function AddProducts() {
 
     if ( inputs.name !== undefined && inputs.serialNumberRef !== undefined && images.length !== 0 && imageURLs.length !== 0 ) {
 
-      axiosInstance.post(`http://localhost:3000/transaction`, inputs, config)
+      axiosInstance.post(`${process.env.REACT_APP_API}/transaction`, inputs, config)
       
     swal("Success", "Add products Succes", "success", {
       buttons: false,

@@ -38,7 +38,7 @@ function App() {
 
       if (inputs.password === Confirm_password){
 
-        axiosInstance.post(`http://localhost:3000/admin/addadmin`, inputs, config)
+        axiosInstance.post(`${process.env.REACT_APP_API}/admin/addadmin`, inputs, config)
         .then(() => {
           swal("Success", "Add Succes", "success", {
             buttons: false,

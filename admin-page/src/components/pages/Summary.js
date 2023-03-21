@@ -25,7 +25,7 @@ function App() {
   const fetchData = async()=>{
 
     axios
-    .get("http://localhost:3000/transaction")
+    .get(`${process.env.REACT_APP_API}/transaction`)
     .then(response=>{
       console.log(response.data)
       SetSummaryData(response.data)
@@ -67,7 +67,7 @@ function App() {
               swal("Update status success", {
                 icon: "success",
               }).then((value) => {
-              axiosInstance.put(`http://localhost:3000/transaction/status/${num}`,{
+              axiosInstance.put(`${process.env.REACT_APP_API}/transaction/status/${num}`,{
               'isReturn': !isreturn},config 
               );
                 window.location.href = "/admin/summary";

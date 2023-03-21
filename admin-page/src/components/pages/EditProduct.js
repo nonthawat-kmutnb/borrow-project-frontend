@@ -47,7 +47,7 @@ function App() {
   const [formData, updateFormData] = useState(initialFormData);
   useEffect(() => {
 
-    axiosInstance.get(`http://localhost:3000/productItem/id/${id}`, config).then((res) => {
+    axiosInstance.get(`${process.env.REACT_APP_POSTGRESQL_API}/productItem/id/${id}`, config).then((res) => {
 			updateFormData({
 				...formData,
 				['name']: res.data.product.name,
