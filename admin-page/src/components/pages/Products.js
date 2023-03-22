@@ -39,18 +39,29 @@ function App() {
     .get(`${process.env.REACT_APP_API}/category`)
     .then(response => {
         const category = response.data.map(item => ({
-        value: item.id,
-        label: item.title
+        
+        value: item.id,        
+        label: item.title,
+
         }));
         setCategory(category);
     })
     
     
   }
+  console.log(category)
+
+  const outputObject = category.reduce((acc, item) => {
+    acc[item.value] = item.label;
+    return acc;
+  }, {});
+  console.log(outputObject);
+  console.log(outputObject[1]);
 
   function ShowCategory(val) {
+
     if (val) {
-      return category[val-1].label;
+      return outputObject[val];
     }
     return '';
   }
