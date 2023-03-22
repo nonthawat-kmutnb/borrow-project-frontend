@@ -8,7 +8,7 @@ import Summary from './pages/Summary';
 import Password from './pages/Password';
 import Products from './pages/Products';
 import EditProduct from './pages/EditProduct';
-
+import AddProductItem from './pages/AddProductItem'
 import { AnimatePresence } from "framer-motion"
 
 const NavRouter = () => {
@@ -20,6 +20,7 @@ const NavRouter = () => {
           <Route path="/admin/edit-product/:id" element={<EditProduct/>} />
           <Route path="/admin/rent" element={<Rent/>} />
           <Route path="/admin/products" element={<Products/>} />
+          <Route path="/admin/add-productItem" element={<AddProductItem/>} />
           <Route path="/admin/add-products" element={<AddProducts/>} />
           <Route path="/admin/add-admin" element={<AddAdmin/>} />
           <Route path="/admin/summary" element={<Summary/>} />

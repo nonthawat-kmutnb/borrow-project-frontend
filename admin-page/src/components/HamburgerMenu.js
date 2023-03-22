@@ -28,6 +28,7 @@ const HamburgerMenu = () => {
         {/* <ButtonComponent to="/" text="Home"/> */}
         <ButtonComponent to="/admin/rent" text="Rent"/>
         <ButtonComponent to="/admin/products" text="Products"/>
+        <ButtonComponent to="/admin/add-productItem" text="Add ProductItem"/>
         <ButtonComponent to="/admin/add-products" text="Add Products"/>
         <ButtonComponent to="/admin/add-admin" text="Add Admin"/>
         <ButtonComponent to="/admin/summary" text="Summary"/>
